@@ -1,0 +1,134 @@
+{% extends "Base.html" %}
+
+{% block mainContent %}
+
+<div class="container text-center">
+    <div class="row">
+
+        <div class="col-4">
+            <a class="btn btn-secondary btn-block" href="user-user">User Manager</a>
+        </div>
+
+        <div class="col-4">
+            <a class="btn btn-secondary btn-block" href="user-product">Product</a>
+        </div>
+
+        <div class="col-4">
+            <a class="btn btn-secondary btn-block disabled" href="user-purchase">Purchase</a>
+        </div>
+
+    </div>
+</div>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header h1 text-center">Purchased History</div>      
+                <div class="card-body">
+                    <div class="accordion" id="accordionExample">
+
+                        {% if purchasedProducts|length > 0 %}
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Show
+                            </button>
+                          </h2>
+
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                           
+                                <ul class="list-group list-group-horizontal mb-2 row text-center fw-bolder">
+                                    <li class="list-group-item col-sm">ID</li>  
+                                    <li class="list-group-item col-sm">Rating</li>  
+                                    <li class="list-group-item col-sm">Type</li>  
+                                    <li class="list-group-item col-sm">Sub-Type</li>  
+                                    <li class="list-group-item col-sm">Name</li>  
+                                </ul>
+                                {% for i in range(purchasedProducts|length ) %}
+
+                                <ul class="list-group list-group-horizontal mb-2 row">
+                                    <li class="list-group-item col-sm">{{purchasedProducts[i].productID}}</li>  
+                                    <li class="list-group-item col-sm">{{purchasedProducts[i].productRating}}</li>
+                                    
+                                    {% if productDetails[i].productType == "3DPrint" %}
+                                        <li class="list-group-item col-sm">3D Print</li>
+                                    {% else %}
+                                        <li class="list-group-item col-sm">{{productDetails[i].productType}}</li>
+                                    {% endif %}               
+                                    
+                                    <li class="list-group-item col-sm">{{productDetails[i].productSubType}}</li>
+                                    <li class="list-group-item col-sm">{{productDetails[i].productName}}</li>
+
+                                </ul>
+
+                                {% endfor %}
+
+                            </div>
+                       
+                          </div>
+                        </div>
+
+                        {% else %}
+
+                        <h4 class="card-title">None</h4>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header h1">Purchase Model</div>      
+                    <div class="card-body">
+                        <form method = "POST">
+                            <div class ="form-group">
+                                <input type="text" class="form-control" name="purchasedProductID" placeholder="Enter product ID">
+                            </div>
+                            <br>
+                            <button class="btn btn-warning" name="userSubmitButton" value="buyProductButton" type="submit">Buy</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header h1">Model Rating</div>      
+                    <div class="card-body">
+                        <form method = "POST">
+                            <div class ="form-group">
+                                <input type="text" class="form-control" name="ratedProductID" placeholder="Enter product ID that you want to rate">
+                                <input type="range" name="ratingInput" min="0" max="5" value="0" step="1" oninput="amount.value=ratingInput.value">                                                       
+                                <output name="amount">0</output>
+                            </div>
+                            <br>
+                            <button class="btn btn-warning" name="userSubmitButton" value="rateProductButton" type="submit">Rate</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<br>
+
+{%endblock%}

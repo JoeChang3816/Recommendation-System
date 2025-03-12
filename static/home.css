@@ -1,0 +1,50 @@
+body {
+    padding-bottom: 20px;
+  }
+  
+.navbar {
+  margin-bottom: 20px;
+}
+
+.SearchBar{
+  width: 50% !important;
+}
+
+.ModelMenu.show, .ModelTypeMenu.show{
+  display: flex;
+}
+
+.ModelMenu .list-group-item ,.ModelTypeMenu .list-group-item{
+  white-space: nowrap;
+}
+
+.ModelTypeMenu{
+  left: -708% !important;
+}
+
+#userMenu{
+  left:-105px;
+}
+
+.accordion-button:not(.collapsed){
+  color: #212529;
+  background-color: #f7f7f7;
+}
+
+.userDetailHeader{
+  width: 162px;
+}
+
+.alert{
+  position: absolute;
+  top:60px;
+}
+
+.form-check-input:checked{
+  background-color:#212529 !important;
+  border-color:#212529 !important;
+}
+
+.dropdown-item:active{
+  background-color: #656b70;
+}

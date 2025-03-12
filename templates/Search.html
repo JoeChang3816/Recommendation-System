@@ -1,0 +1,57 @@
+{% extends "Base.html" %}
+
+{% block mainContent %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header h1 text-center">Search Result</div>     
+                    <div class="card-body">
+                    {% if productSearchResults|length > 0 %}
+
+                        <ul class="list-group list-group-horizontal mb-2 row text-center fw-bolder">
+                            <li class="list-group-item col-sm">ID</li>
+                            <li class="list-group-item col-sm">Name</li>  
+                            <li class="list-group-item col-sm">Type</li>  
+                            <li class="list-group-item col-sm">Sub-Type</li>  
+                        </ul>
+                        {% for x in productSearchResults %}
+                        
+                            {% if x == "hr" %}
+                                <hr>
+                            {% else %}
+
+                            <ul class="list-group list-group-horizontal mb-2 row text-center">
+                                <li class="list-group-item col-sm">{{x.productID}}</li>
+                                <li class="list-group-item col-sm">{{x.productName}}</li>  
+                                <li class="list-group-item col-sm">{{x.productType}}</li>  
+                                <li class="list-group-item col-sm">{{x.productSubType}}</li>  
+                            </ul>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% else %}
+                        <h4 class="card-title">None</h4>
+                    {% endif %}
+                        
+                    </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<!--
+
+1. Bool Search
+2. Get all the retieval result from bool search
+
+3. Rerank based on user's perference
+or
+3. Rerank result based on requsted basic order (Price, upload time etc)
+
+-->
+
+{%endblock%}
